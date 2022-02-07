@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useReducer } from "react";
+import { notes } from "../../notes";
 
 const initialState = {
   notes: [
@@ -25,10 +26,49 @@ const initialState = {
 
 export const NotesContext = React.createContext();
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_NOTE":
+      return {
+        notes: [
+          ...state.notes,
+          {
+            id: new Date().valueOf(),
+            title: action.todo.title,
+            task: action.todo.task,
+            done: false,
+          },
+        ],
+      };
+    case "REMOVE_NOTE":
+      return state;
+    default:
+      return state;
+  }
+};
 export const Provider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const addTodoItem = todo => {
+    dispatch({
+      type: "ADD_NOTE",
+      todo: todo,
+    });
+  };
+
+  const removeTodo = todo => {
+    dispatch({
+      type: "DONE_NOTE",
+      todo: todo,
+    });
+  };
+  const value = {
+    notes: state.notes,
+    addTodoItem: addTodoItem,
+    removeTodo: removeTodo,
+  };
+
   return (
-    <NotesContext.Provider value={initialState}>
-      {children}
-    </NotesContext.Provider>
+    <NotesContext.Provider value={value}>{children}</NotesContext.Provider>
   );
 };
