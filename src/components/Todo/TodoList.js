@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 
-import { notes } from "../../notes";
 import classes from "./TodoList.module.css";
-import { NotesContext } from "../store/todoStore";
+import { NotesContext } from "../store/TodoStore";
 
 const TodoList = () => {
   const ctx = useContext(NotesContext);
 
   const removeHandler = id => {
+    console.log({ id });
     ctx.removeTodo(id);
   };
 

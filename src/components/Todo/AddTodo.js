@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import classes from "./AddTodo.module.css";
 import Button from "../UI/Button";
 
-import { NotesContext } from "../store/todoStore";
+import { NotesContext } from "../store/TodoStore";
 
 const AddTodo = () => {
   const [todo, setTodo] = useState({ title: "", task: "" });

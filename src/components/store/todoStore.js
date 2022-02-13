@@ -1,5 +1,4 @@
 import React, { useReducer } from "react";
-import { notes } from "../../notes";
 
 const initialState = {
   notes: [
@@ -41,7 +40,15 @@ const reducer = (state, action) => {
         ],
       };
     case "REMOVE_NOTE":
-      return state;
+      const newTodos = [...state.notes];
+      newTodos.splice(
+        newTodos.findIndex(item => item.id === action.id),
+        1
+      );
+      return {
+        ...state,
+        notes: newTodos,
+      };
     default:
       return state;
   }
@@ -56,10 +63,10 @@ export const Provider = ({ children }) => {
     });
   };
 
-  const removeTodo = todo => {
+  const removeTodo = id => {
     dispatch({
       type: "DONE_NOTE",
-      todo: todo,
+      todo: id,
     });
   };
   const value = {

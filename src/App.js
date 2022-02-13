@@ -2,7 +2,7 @@ import React from "react";
 import AddTodo from "./components/Todo/AddTodo";
 import TodoList from "./components/Todo/TodoList";
 
-import { Provider } from "./components/store/todoStore";
+import { Provider } from "./components/store/TodoStore";
 const App = () => {
   return (
     <div>
