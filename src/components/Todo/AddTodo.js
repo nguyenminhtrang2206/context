@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import classes from "./AddTodo.module.css";
 import Button from "../UI/Button";
 
-import { NotesContext } from "../store/TodoStore";
+import { NotesContext } from "../store/todoStore";
 
 const AddTodo = () => {
   const [todo, setTodo] = useState({ title: "", task: "" });
@@ -15,7 +15,6 @@ const AddTodo = () => {
       ...prevState,
       [name]: value,
     }));
-    console.log(todo);
   };
 
   const addHandler = e => {
@@ -27,11 +26,11 @@ const AddTodo = () => {
     <form onSubmit={addHandler} className={classes.input}>
       <div>
         <label htmlFor="title">Title</label>
-        <input onChange={changeHandler} type="text" id="title" name="title" />
+        <input type="text" id="title" name="title" onChange={changeHandler} />
       </div>
       <div>
         <label htmlFor="task">Task</label>
-        <input onChange={changeHandler} type="text" id="task" name="task" />
+        <input type="text" id="task" name="task" onChange={changeHandler} />
       </div>
       <Button type="submit">Add Task</Button>
     </form>
